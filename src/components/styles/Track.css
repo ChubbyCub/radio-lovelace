@@ -41,6 +41,7 @@
   color: goldenrod;
   font-size: 1rem;
 }
+
 .track--favorite:before {
   content: "\2606";
   position: absolute;
