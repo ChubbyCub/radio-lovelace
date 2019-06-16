@@ -9,14 +9,18 @@ class Track extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      favorite: false,
+      favoriteCallBack: props.favoriteCallBack,
+      chosenTop: props.chosenTop,    
     }
   }
 
-  onToggleFavorite = (event) => {
-    this.setState({
-      favorite: event.target.checked,
-    })
+  onTopButtonClick = () => {
+    this.state.chosenTop(this.props.trackId);
+
+  }
+
+  onFavoriteButtonClick = () => {
+    this.state.favoriteCallBack(this.props.trackId);
   }
 
   render () {
@@ -28,13 +32,11 @@ class Track extends React.Component {
           type="checkbox"
           className="track--favorite"
           checked={this.state.favorite}
-          onChange={this.onToggleFavorite}
+          onChange={this.onFavoriteButtonClick}
         />
         <p className="track--artist">{this.props.artist}</p>
         <p className="track--playtime">{this.props.playtime}</p>
-        <button
-          className="track--control track--to-top"
-          >
+        <button onClick={this.onTopButtonClick} className="track--control track--to-top">
           <span role="img" aria-label="send to top">🔝</span>
         </button>
         <button
