@@ -10,6 +10,7 @@ class Playlist extends React.Component {
     this.state = {
       tracks: props.tracks,
       side: props.side,
+      moveListCallBack: props.moveListCallBack,
     };
   }
 
@@ -49,6 +50,10 @@ class Playlist extends React.Component {
     temp.favorite = true;
   }
 
+  moveBetweenLists = (id, side) => {
+    this.state.moveListCallBack(id, this.state.side);
+  }
+
   render() {
     const tracks = this.state.tracks;
     const trackCount = tracks.length;
@@ -60,7 +65,9 @@ class Playlist extends React.Component {
         <Track
           key={track.id}
           trackId={track.id}
+          side={this.state.side}
           favoriteCallBack={this.markFavorite}
+          moveListCallBack={this.moveBetweenLists}
           chosenTop={this.moveToTop}
           {...track}
         />

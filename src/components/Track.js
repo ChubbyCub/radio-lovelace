@@ -10,6 +10,7 @@ class Track extends React.Component {
     super(props);
     this.state = {
       favoriteCallBack: props.favoriteCallBack,
+      moveListCallBack: props.moveListCallBack,
       chosenTop: props.chosenTop,    
     }
   }
@@ -21,6 +22,10 @@ class Track extends React.Component {
 
   onFavoriteButtonClick = () => {
     this.state.favoriteCallBack(this.props.trackId);
+  }
+
+  onMovingListButtonClick = () => {
+    this.state.moveListCallBack(this.props.trackId, this.props.side);
   }
 
   render () {
@@ -39,9 +44,7 @@ class Track extends React.Component {
         <button onClick={this.onTopButtonClick} className="track--control track--to-top">
           <span role="img" aria-label="send to top">🔝</span>
         </button>
-        <button
-          className="track--control track--switch"
-          >
+        <button onClick={this.onMovingListButtonClick} className="track--control track--switch">
           <span role="img" aria-label="switch lists">↔</span>
         </button>
       </li>
